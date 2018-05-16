@@ -1,6 +1,6 @@
 <h1>コメントを編集する</h1>
 
-<%= form_for ([@post, @comment]) do |c| %>
+<%= form_for (@comment) do |c| %>
   <p>
   <%= c.label(:commenter, "名前") %>
   <%= c.text_field :commenter %>
@@ -11,4 +11,4 @@
   </p>
   <%= c.submit "登録" %>
 <% end %><br>
-<%= link_to '戻る', post_path(@post) %>
+<%= link_to '戻る', post_path(@comment.post) %>

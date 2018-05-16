@@ -3,7 +3,7 @@ Rails.application.routes.draw do
   resources :posts
 
   resources :posts do
-    resources :comments
+    resources :comments, only: [:index, :create, :edit, :destroy]
   end
   
   get 'home/index'

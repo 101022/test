@@ -5,31 +5,36 @@ class CommentsController < ApplicationController
 
     def create
         @post = Post.find(params[:post_id])
-        @comment = @post.comments.create(comment_params)
-        redirect_to post_path(@post)
+        @comment = @post.comments.new(comment_params)
+        if (@comment.save)
+            redirect_to post_path(@post), notice: 'コメントを登録しました。'
+        else
+            redirect_to post_path(@post), notice: 'コメント登録に失敗しました。'
+        end
     end
 
     def edit
-        @post = Post.find(params[:post_id])
-        @comment = @post.comments.find(params[:id])
+        @comment = Post.find(params[:post_id]).comments.find(params[:id])
     end
 
     def update
-        @post = Post.find(params[:post_id])
         @comment = Comment.find(params[:id])
-        @comment.update(params.require(:comment).permit(:commenter, :body))
-        redirect_to post_path(@post)
+        if @comment.update(comment_params)
+            redirect_to post_path(@comment.post), notice: 'コメントを更新しました。'
+        else
+            redirect_to post_path(@comment.post), notice: 'コメント更新に失敗しました。'
+        end
     end
 
     def destroy
         @post = Post.find(params[:post_id])
         @comment = @post.comments.find(params[:id])
         @comment.destroy
-        redirect_to post_path(@post)
+        redirect_to post_path(@post), notice: 'コメントを削除しました。'
     end
 
     private
-    def comment_params
-        params.require(:comment).permit(:commenter, :body)
-    end
+        def comment_params
+            params.require(:comment).permit(:commenter, :body)
+        end
 end
