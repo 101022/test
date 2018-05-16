@@ -1,5 +1,4 @@
 class PostsController < ApplicationController
-  before_action :set_post, only: [:show, :edit, :update, :destroy]
 
   # GET /posts
   # GET /posts.json
@@ -36,8 +35,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1
   # PATCH/PUT /posts/1.json
   def update
-    if @post.update(post_params)
-      redirect_to @post, notice: '日記を更新しました。'
+    if post.update(post_params)
+      redirect_to post, notice: '日記を更新しました。'
     else
       render :edit, notice: '日記を更新できませんでした。'
     end
@@ -46,15 +45,16 @@ class PostsController < ApplicationController
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    @post.destroy
+    post.destroy
     redirect_to posts_url, notice: '日記を削除しました。'
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_post
-      @post = Post.find(params[:id])
+    def post
+      @post ||= Post.find(params[:id])
     end
+    
+    helper_method :post
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def post_params

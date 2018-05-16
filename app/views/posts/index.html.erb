@@ -21,7 +21,7 @@
         <td><%= post.name %></td>
         <td><%= post.title %></td>
         <td><%= post.content %></td>
-        <td><%= link_to '閲覧', post %></td>
+        <td><%= link_to '閲覧', post_path(post) %></td>
         <td><%= link_to '編集', edit_post_path(post) %></td>
         <td><%= link_to '削除', post_path(post), method: :delete, data: { confirm: '本当に削除しますか？' } %></td>
       </tr>

@@ -2,26 +2,26 @@
 
 <p>
   <strong><%= t('header.name') %>:</strong>
-  <%= @post.name %>
+  <%= post.name %>
 </p>
 
 <p>
   <strong><%= t('header.title') %>:</strong>
-  <%= @post.title %>
+  <%= post.title %>
 </p>
 
 <p>
   <strong><%= t('header.content') %>:</strong>
-  <%= @post.content %>
+  <%= post.content %>
 </p>
 
-<%= link_to 'Edit', edit_post_path(@post) %> |
+<%= link_to 'Edit', edit_post_path(post) %> |
 <%= link_to 'Back', posts_path %><br><br>
 
 
-<% if @post.comments.count > 0 %>
+<% if post.comments.count > 0 %>
 <h2>コメント</h2>
-<% @post.comments.each do |comment| %>
+<% post.comments.each do |comment| %>
   <p>
     <%= comment.commenter %>: <%= comment.body %>
     <%= link_to '編集', edit_post_comment_path(comment.post, comment) %>
@@ -33,7 +33,7 @@
 <% end %>
 
 <h2>コメントを書く</h2>
-<%= form_for([@post, @post.comments.build]) do |f| %>
+<%= form_for([post, post.comments.build]) do |f| %>
 
   <div class="field">
   <%= t('comment.name') %><br>

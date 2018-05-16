@@ -30,10 +30,10 @@
 # available at http://guides.rubyonrails.org/i18n.html.
 
 ja:
-  header:
-    name:     Name
-    titile:   Title
-    content:  Content
+  post:
+    name:     名前
+    titile:   タイトル
+    content:  本文
   comment:
     name:     名前
     comment:  コメント
