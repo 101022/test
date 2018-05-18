@@ -1,9 +1,9 @@
 class CreatePosts < ActiveRecord::Migration[5.2]
   def change
-    create_table :posts 'ブログ' do |t|
-      t.string :name    '名前'
-      t.string :title   'タイトル'
-      t.text :content   '本文'
+    create_table :posts, comment: 'ブログ' do |t|
+      t.string :name, comment:    '名前'
+      t.string :title, comment:   'タイトル'
+      t.text :content, comment:   '本文'
 
       t.timestamps
     end

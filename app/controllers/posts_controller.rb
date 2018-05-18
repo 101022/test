@@ -26,9 +26,9 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: '日記を投稿しました。'
+      redirect_to @post, flash: {success: '日記を投稿しました。'}
     else
-      render :new, notice: '日記を投稿できませんでした。'
+      render :new, flash: {error: '日記を投稿できませんでした。'}
     end
   end
 
@@ -36,17 +36,20 @@ class PostsController < ApplicationController
   # PATCH/PUT /posts/1.json
   def update
     if post.update(post_params)
-      redirect_to post, notice: '日記を更新しました。'
+      redirect_to post, flash: {success: '日記を更新しました。'}
     else
-      render :edit, notice: '日記を更新できませんでした。'
+      render :edit, flash: {error: '日記を更新できませんでした。'}
     end
   end
 
   # DELETE /posts/1
   # DELETE /posts/1.json
   def destroy
-    post.destroy
-    redirect_to posts_url, notice: '日記を削除しました。'
+    if post.destroy
+      redirect_to posts_url, flash: {success: '日記を削除しました。'}
+    else
+      redirect_to posts_url, flash: {error: '日記を削除できませんでした。'}
+    end
   end
 
   private

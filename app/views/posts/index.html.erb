@@ -1,4 +1,6 @@
 <p id="notice"><%= notice %></p>
+<p class="success"><%= flash[:success] %></p>
+<p class="error"><%= flash[:error] %></p>
 
 <h1>Diary</h1>
 
@@ -8,9 +10,9 @@
 <table>
   <thead>
     <tr>
-      <th><%= t('header.name') %></th>
-      <th><%= t('header.title') %></th>
-      <th><%= t('header.content') %></th>
+      <th><%= t('post.name') %></th>
+      <th><%= t('post.title') %></th>
+      <th><%= t('post.content') %></th>
       <th colspan="3"></th>
     </tr>
   </thead>

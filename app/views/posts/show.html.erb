@@ -1,17 +1,19 @@
 <p id="notice"><%= notice %></p>
+<p class="success"><%= flash[:success] %></p>
+<p class="error"><%= flash[:error] %></p>
 
 <p>
-  <strong><%= t('header.name') %>:</strong>
+  <strong><%= t('post.name') %>:</strong>
   <%= post.name %>
 </p>
 
 <p>
-  <strong><%= t('header.title') %>:</strong>
+  <strong><%= t('post.title') %>:</strong>
   <%= post.title %>
 </p>
 
 <p>
-  <strong><%= t('header.content') %>:</strong>
+  <strong><%= t('post.content') %>:</strong>
   <%= post.content %>
 </p>
 
@@ -20,20 +22,20 @@
 
 
 <% if post.comments.count > 0 %>
-<h2>コメント</h2>
-<% post.comments.each do |comment| %>
-  <p>
-    <%= comment.commenter %>: <%= comment.body %>
-    <%= link_to '編集', edit_post_comment_path(comment.post, comment) %>
-    <%= link_to '削除', [comment.post, comment],
-               method: :delete,
-               data: { confirm: "本当に削除しますか？" } %>
-  </p>
-<% end %>
+  <h2>コメント</h2>
+  <% post.comments.each do |comment| %>
+    <p>
+      <%= comment.commenter %>: <%= comment.body %>
+      <%= link_to '編集', edit_post_comment_path(comment.post, comment) %>
+      <%= link_to '削除', post_comment_path(comment.post, comment),
+                method: :delete,
+                data: { confirm: "本当に削除しますか？" } %>
+    </p>
+  <% end %>
 <% end %>
 
 <h2>コメントを書く</h2>
-<%= form_for([post, post.comments.build]) do |f| %>
+<%= form_with(model: [post, post.comments.build]) do |f| %>
 
   <div class="field">
   <%= t('comment.name') %><br>
