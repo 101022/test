@@ -1,6 +1,6 @@
 <h1>コメントを編集する</h1>
 
-<%= form_for (@comment) do |c| %>
+<%= form_with model: @comment do |c| %>
   <p>
   <%= c.label(:commenter, "名前") %>
   <%= c.text_field :commenter %>

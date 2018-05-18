@@ -5,7 +5,7 @@ class CommentsController < ApplicationController
 
     def create
         comment = post.comments.new(comment_params)
-        if (comment.save)
+        if comment.save
             redirect_to post_path(post), flash: {success: 'コメントを登録しました。'}
         else
             redirect_to post_path(post), flash: {error: 'コメント登録に失敗しました。'}

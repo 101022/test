@@ -32,7 +32,7 @@
 ja:
   post:
     name:     名前
-    titile:   タイトル
+    title:   タイトル
     content:  本文
   comment:
     name:     名前

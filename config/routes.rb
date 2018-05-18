@@ -1,9 +1,7 @@
 Rails.application.routes.draw do
-  resources :comments,  only: [:update]
-  resources :posts,     only: [:index, :create, :edit, :destroy]
-
+  resources :comments, only: [:update]
   resources :posts do
-    resources :comments, only: [:index, :create, :edit, :destroy]
+    resources :comments, only: [:new, :create, :edit, :update, :destroy]
   end
   
   get 'home/index'
