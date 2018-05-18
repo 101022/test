@@ -1,0 +1,14 @@
+<h1>コメントを編集する</h1>
+
+<%= form_with model: @comment do |c| %>
+  <p>
+  <%= c.label(:commenter, "名前") %>
+  <%= c.text_field :commenter %>
+  </p>
+  <p>
+  <%= c.label :body, "コメント" %>
+  <%= c.text_field :body %>
+  </p>
+  <%= c.submit "登録" %>
+<% end %><br>
+<%= link_to '戻る', post_path(@comment.post) %>
